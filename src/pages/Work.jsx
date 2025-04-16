@@ -1,5 +1,5 @@
 import React from 'react'
-import ProfileCard from '../components/Profilecard'
+import ProfileCard from '../components/ProfileCard'
 import WorkContent from '../components/WorkContent'
 import Navbar from '../components/Navbar'
 
