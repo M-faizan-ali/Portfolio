@@ -1,11 +1,10 @@
 import React from 'react'
-import ProfileCard from './Profilecard'
 import MainHomePage from './MainHomePage'
 import RecentProjects from './RecentProjects'
 import ServicesOffered from './ServicesOffered'
 import WorkTogether from './WorkTogether'
-import Accordion from './Accordian'
 import Navbar from './Navbar'
+import ProfileCard from './ProfileCard'
 
 export default function HomePage() {
   return (
