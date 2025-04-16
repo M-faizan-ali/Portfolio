@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Navbar from '../components/Navbar';
-import ProfileCard from '../components/Profilecard';
+import ProfileCard from '../components/ProfileCard';
 import HirringSection from '../components/HirringSection';
 import Skills from '../components/Skills';
 import Testimonial from '../components/Testimonial';

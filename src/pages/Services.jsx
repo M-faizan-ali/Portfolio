@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Navbar from '../components/Navbar';
-import ProfileCard from '../components/Profilecard';
+import ProfileCard from '../components/ProfileCard';
 import ServicesPageContent from '../components/ServicesPageContent';
 
 const Services = () => {
