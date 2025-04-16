@@ -27,7 +27,7 @@ const ContactContent = () => {
 
   return (
     <>
-        <div className='bg-white '>
+        <div className=''>
             <div className="container mx-auto p-8">
                 <div className="mb-8">
                 <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-200">

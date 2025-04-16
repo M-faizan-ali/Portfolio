@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function HirringSection() {
   return (
-    <div className="bg-white rounded-xl p-8 space-y-8">
+    <div className=" p-8 space-y-8">
       {/* First Section */}
       <div className="space-y-6">
         {/* Available For Hire Badge */}

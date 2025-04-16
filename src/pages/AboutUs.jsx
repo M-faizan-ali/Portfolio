@@ -23,10 +23,9 @@ const ScrollChain = ({ children, onChainEnd, isChainActive }) => {
       }
     };
 
-    if (isChainActive) { // Only attach the scroll listener if the chain is active
-        container.addEventListener('scroll', handleScroll);
+    if (isChainActive) {
+      container.addEventListener('scroll', handleScroll);
     }
-
 
     return () => {
       container.removeEventListener('scroll', handleScroll);
@@ -42,43 +41,56 @@ const ScrollChain = ({ children, onChainEnd, isChainActive }) => {
 
 export default function AboutUs() {
   const containerRef = useRef(null);
-  const contentRef = useRef(null); // Ref for the scrollable content
+  const contentRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start start', 'end end']
+    offset: ['start start', 'end end'],
   });
 
-  const [isChainActive, setIsChainActive] = useState(true); // Start with chain active
-  const profileCardY = useTransform(scrollYProgress, [0, 0, 1, 1], [0, 0, '0%', '-50%']); // Adjusted
+  const [isChainActive, setIsChainActive] = useState(true);
+  const profileCardY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, '-50%'],
+    { clamp: false } // Important
+  );
+
+  const clampedProfileCardY = useTransform(profileCardY, (value) => {
+    return Math.max(Math.min(value, 0), '-50%'); // Clamp between 0 and -50%
+  });
+
   const contentX = useTransform(scrollYProgress, [0, 0, 1, 1], ['0%', '0%', '0%', '0%']);
 
   const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 1024;
 
   const handleChainEnd = () => {
-    setIsChainActive(false); // Deactivate the chain when content reaches the end.
+    setIsChainActive(false);
   };
 
   useEffect(() => {
     if (!isDesktop) {
       profileCardY.destroy();
     }
-  }, [isDesktop, profileCardY]);
+    if (scrollYProgress.get() < 1) {
+      setIsChainActive(true);
+    }
+  }, [isDesktop, scrollYProgress, profileCardY]);
 
   return (
     <div>
-      <Navbar />
+      <Navbar style={{ zIndex: 100 }} />
       <div className="w-[90%] m-auto" ref={containerRef} style={{ perspective: '1000px' }}>
-        <div className="flex md:flex-row flex-col gap-8 w-full">
+        <div className="flex md:flex-row flex-col gap-[15px] w-full">
           <motion.div
-            className={`w-full md:w-[30%] bg-gray-200 rounded-xl sticky top-0 h-screen`}
-            style={{ y: isDesktop ? profileCardY : 0,  }} // Parallax, sticky
+            className={`w-full md:w-[30%] bg-gray-200 rounded-xl ${isChainActive ? 'sticky top-0 h-screen' : ''}`}
+            style={{ y: isDesktop ? clampedProfileCardY : 0 }} // Use clampedProfileCardY
           >
             <ProfileCard />
           </motion.div>
           <motion.div
-            className="w-full md:w-[70%] rounded-xl "
+            className="w-full md:w-[70%] rounded-xl bg-white "
             ref={contentRef}
-            style={{ x: isDesktop ? contentX : 0,  }}
+            style={{ x: isDesktop ? contentX : 0 }}
           >
             <ScrollChain onChainEnd={handleChainEnd} isChainActive={isChainActive}>
               <HirringSection />

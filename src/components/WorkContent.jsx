@@ -24,7 +24,7 @@ export default function WorkContent() {
         <h1 className="text-4xl mt-5">
           Check Out My Latest <span className="text-blue-600">Projects</span>
         </h1>
-        <p className="text-xl">
+        <p className="text-xl mt-5">
           I'm here to help if you're searching for a product designer to bring your idea to life or a design partner to help take your business to the next level.
         </p>
       </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import ProfileCard from '../components/Profilecard'
+import ProfileCard from '../components/ProfileCard'
 import ContactContent from '../components/ContactContent'
 import Navbar from '../components/Navbar'
 import Accordion from '../components/Accordian'
@@ -12,7 +12,7 @@ export default function Contact() {
         <div className='w-[30%]'>
             <ProfileCard/>
         </div>
-        <div className='w-[70%]'>
+        <div className='w-[70%] bg-white rounded-xl'>
             <ContactContent />
             <Accordion />
         </div>

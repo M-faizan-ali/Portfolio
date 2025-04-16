@@ -7,7 +7,7 @@ export default function Work() {
   return (
     <div>
       <Navbar/>
-      <div className='flex gap-5 w-[90%] m-auto'>
+      <div className='flex gap-[15px] w-[90%] m-auto'>
         <div className='w-[30%]'>
             <ProfileCard/>
         </div>
